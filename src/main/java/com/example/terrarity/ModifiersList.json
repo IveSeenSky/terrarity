@@ -1,0 +1,13 @@
+{
+  "item.terrarity.iron_sword.rarity_prefix": "[%s] ",
+  "tooltip.terrarity.rarity": "Rarity: %s",
+  "tooltip.terrarity.modifier.damage": "Damage: +%s",
+  "tooltip.terrarity.modifier.durability": "Durability: +%s",
+  "tooltip.terrarity.modifier.speed": "Speed: +%s",
+  "tooltip.terrarity.modifier.size": "Size: +%s",
+  "tooltip.terrarity.modifier.critical_chance": "Critical Chance: +%s",
+  "tooltip.terrarity.modifier.projectile_speed": "Projectile Speed: +%s",
+  "tooltip.terrarity.modifier.reload_speed": "Reload Speed: +%s",
+  "tooltip.terrarity.modifier.digging_speed": "Digging Speed: +%s",
+  "tooltip.terrarity.modifier.fortune": "Fortune: +%s"
+}
