@@ -1,0 +1,145 @@
+{
+  "rarity_modifiers": {
+    "SWORD": {
+      "Cursed": {},
+      "Common": {
+        "Terrible": {
+          "Damage": 0.85,
+          "Size": 0.87
+        },
+        "Unhappy": {
+          "Speed": 0.9,
+          "Size": 0.9
+        },
+        "Shameful": {
+          "Damage": 0.85
+        },
+        "Tiny": {
+          "Speed": 0.82
+        }
+      },
+      "Uncommon": {
+        "Dull": {
+          "Damage": 0.85
+        },
+        "Small": {
+          "Size": 0.87
+        }
+      },
+      "Rare": {
+
+        "Heavy": {
+          "Size": 1.15,
+          "Speed": 0.85
+        },
+
+        "Light": {
+          "Damage": 0.9,
+          "Speed": 1.20
+        },
+
+        "Bulky": {
+          "Damage": 1.10,
+          "Speed": 0.85
+        }
+      },
+      "Epic": {
+
+        "Pointy": {
+          "Damage": 1.15,
+          "Crit_chance": 1.25
+        },
+
+        "Large": {
+          "Damage": 1.2,
+          "Size": 1.2
+        },
+
+        "Sharp": {
+          "Damage": 1.2,
+          "Crit_chance": 1.15,
+          "Speed": 1.10
+        },
+
+        "Massive": {
+          "Damage": 1.3,
+          "Size": 1.3,
+          "Speed": 0.9
+        }
+      },
+
+      "Legendary": {
+
+        "Savage": {
+          "Damage": 1.5,
+          "Durability": 1.33,
+          "Speed": 1.2,
+          "Size": 1.15
+        },
+
+        "Dangerous": {
+          "Damage": 1.4,
+          "Durability": 1.33,
+          "Speed": 1.3,
+          "Crit_chance": 1.25
+        }
+      },
+
+      "Mythic": {
+        "Mythical": {
+          "Damage": 2,
+          "Durability": 1.75,
+          "Speed": 2,
+          "Crit_chance": 1.5,
+          "Size": 1.30
+        }
+      }
+    },
+
+    "Bow": {
+      "Cursed": {},
+      "Common": {},
+      "Uncommon": {},
+      "Rare": {},
+      "Epic": {},
+      "Legendary": {},
+      "Mythic": {}
+    },
+    "Crossbow": {
+      "Cursed": {},
+      "Common": {},
+      "Uncommon": {},
+      "Rare": {},
+      "Epic": {},
+      "Legendary": {},
+      "Mythic": {}
+    },
+    "Armor": {
+      "Cursed": {},
+      "Common": {},
+      "Uncommon": {},
+      "Rare": {},
+      "Epic": {},
+      "Legendary": {},
+      "Mythic": {}
+    },
+    "Shield": {
+      "Cursed": {},
+      "Common": {},
+      "Uncommon": {},
+      "Rare": {},
+      "Epic": {},
+      "Legendary": {},
+      "Mythic": {}
+    },
+    "Trident": {
+      "Cursed": {},
+      "Common": {},
+      "Uncommon": {},
+      "Rare": {},
+      "Epic": {},
+      "Legendary": {},
+      "Mythic": {}
+    }
+  }
+}
