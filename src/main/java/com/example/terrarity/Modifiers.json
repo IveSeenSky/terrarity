@@ -98,22 +98,31 @@
 
     "Bow": {
       "Cursed": {},
-      "Common": {},
-      "Uncommon": {},
-      "Rare": {},
-      "Epic": {},
-      "Legendary": {},
-      "Mythic": {}
+      "Common": {
+        "Awful": {},
+        "Awkward": {},
+        "Lethargic": {}
+      },
+      "Uncommon": {
+        "Frenzying": {}
+      },
+      "Rare": {
+        "Powerful": {},
+        "Sighted": {}
+      },
+      "Epic": {
+        "Staunch": {},
+        "Intimidating": {},
+        "Rapid": {}
+      },
+      "Legendary": {
+        "Deadly": {}
+      },
+      "Mythic": {
+        "Unreal": {}
+      }
     },
-    "Crossbow": {
-      "Cursed": {},
-      "Common": {},
-      "Uncommon": {},
-      "Rare": {},
-      "Epic": {},
-      "Legendary": {},
-      "Mythic": {}
-    },
+
     "Armor": {
       "Cursed": {},
       "Common": {},
@@ -123,6 +132,7 @@
       "Legendary": {},
       "Mythic": {}
     },
+
     "Shield": {
       "Cursed": {},
       "Common": {},
@@ -132,6 +142,7 @@
       "Legendary": {},
       "Mythic": {}
     },
+
     "Trident": {
       "Cursed": {},
       "Common": {},
