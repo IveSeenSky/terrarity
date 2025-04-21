@@ -9,7 +9,6 @@ import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Identifier;
 import net.minecraft.registry.Registries;
 import net.minecraft.nbt.NbtCompound;
@@ -32,6 +31,36 @@ public class RecipeModifier {
     public static void register() {
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
             RecipeManager recipeManager = server.getRecipeManager();
+
+            // В теории тут все рецепты крафта. Но я вообще понятия не имею что там
+            Map<Identifier, Recipe<?>> craftingRecipes = recipeManager.values().stream()
+                    .filter(recipe -> recipe.getType() == RecipeType.CRAFTING)
+                    .collect(Collectors.toMap(Recipe::getId, recipe -> recipe));
+
+            Map<Identifier, Recipe<?>> modifiedRecipes = new HashMap<>();
+
+            // Получаем DynamicRegistryManager из MinecraftServer
+            DynamicRegistryManager dynamicRegistryManager = server.getRegistryManager();
+
+            craftingRecipes.forEach((identifier, recipe) -> {
+                if (recipe instanceof CraftingRecipe craftingRecipe) {
+                    ItemStack output = craftingRecipe.getOutput(dynamicRegistryManager);
+
+                    if (output.getItem() instanceof IModifiableItem) {
+                        IModifiableItem modifiableItem = (IModifiableItem) output.getItem();
+                        Item item = output.getItem();
+
+                        Rarity rarity = determineRarity();
+
+                        Map<String, Double> modifiers = generateModifiers(rarity, item);
+
+                        modifiableItem.setRarity(rarity);
+                        modifiableItem.setModifiers(modifiers);
+
+                        //Бля нужно прописать чтобы еще на рандом генерилась еще и тип оружки.
+                    }
+                }
+            });
         });
 
         // Заполнение массива говна (0 = 0%)
