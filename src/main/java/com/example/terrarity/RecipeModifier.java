@@ -1,6 +1,10 @@
 package com.example.terrarity;
 
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
@@ -10,39 +14,52 @@ import net.minecraft.util.Identifier;
 import net.minecraft.registry.Registries;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.DoubleToIntFunction;
 import java.util.stream.Collectors;
 
 public class RecipeModifier {
     private static final Random RANDOM = new Random();
 
+    // Массив говна (Вес > Тип)
+    private static Map<Double, Rarity> rarities;
+    private static double totalWeight = 0;
+
     public static void register() {
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
             RecipeManager recipeManager = server.getRecipeManager();
         });
+
+        // Заполнение массива говна (0 = 0%)
+        rarities.put(0.0,     Rarity.CURSED);
+        rarities.put(1.0/500.0,    Rarity.COMMON);
+        rarities.put(1.0/1000.0,    Rarity.UNCOMMON);
+        rarities.put(1.0/1500.0,    Rarity.RARE);
+        rarities.put(1.0/2000.0,    Rarity.EPIC);
+        rarities.put(1.0/2500.0,    Rarity.LEGENDARY);
+        rarities.put(1.0/5000.0,   Rarity.MYTHIC);
+
+        for (var item : rarities.entrySet()) {
+            totalWeight += item.getKey();
+        }
     }
 
     private static Rarity determineRarity() {
-        double chance = RANDOM.nextDouble();
-        if (chance < 0.01) {
-            return Rarity.MYTHIC;
-        } else if (chance < 0.05) {
-            return Rarity.LEGENDARY;
-        } else if (chance < 0.15) {
-            return Rarity.EPIC;
-        } else if (chance < 0.30) {
-            return Rarity.RARE;
-        } else if (chance < 0.50) {
-            return Rarity.UNCOMMON;
-        } else if (chance < 0.75) {
-            return Rarity.COMMON;
-        } else {
-            return Rarity.CURSED;
+        Rarity result = null;
+        double random = RANDOM.nextInt() * totalWeight;
+        double cWeight = 0;
+
+        for (var item : rarities.entrySet()) {
+            cWeight = cWeight + item.getKey();
+            if (random <= cWeight)
+                result = item.getValue();
         }
+
+        return result != null ? result : Rarity.COMMON;
     }
 
     private static Map<String, Double> generateModifiers(Rarity rarity, Item item) {
@@ -54,7 +71,7 @@ public class RecipeModifier {
                 modifiers.put("damage", 1.0 + (rarity.ordinal() * 0.2));
                 modifiers.put("durability", 1.0 + (rarity.ordinal() * 0.1));
 
-                modifiers.put("speed", 0.0 + (rarity.ordinal() * 0.05));
+                modifiers.put("attack_speed", 0.0 + (rarity.ordinal() * 0.05));
                 modifiers.put("size", 0.0 + (rarity.ordinal() * 0.1));
                 modifiers.put("critical_chance", 0.05 + (rarity.ordinal() * 0.02));
 
@@ -99,7 +116,6 @@ public class RecipeModifier {
 
                 //modifiers.put("projectile_speed", 1.0 + (rarity.ordinal() * 0.07));
                 // modifiers.put("reload_speed", 1.0 - (rarity.ordinal() * 0.03));
-
             }
             case ToolItem toolItem -> {
                 // Tools (Axe, Pickaxe, Shovel, Hoe)
