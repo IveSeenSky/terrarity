@@ -5,25 +5,26 @@ import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+
 import java.util.HashMap;
 import java.util.Map;
 
+// хуйня переделывай
 public class ModifiableSword extends SwordItem implements IModifiableItem {
 
-    private Rarity rarity = Rarity.COMMON;
+    private ModdedRarity rarity = ModdedRarity.COMMON;
     private Map<String, Double> modifiers = new HashMap<>();
 
     public ModifiableSword(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
         super(toolMaterial, attackDamage, attackSpeed, settings);
     }
 
-    public Rarity getRarity(){
+    public ModdedRarity getRarity(){
         return rarity;
     }
 
     @Override
-    public void setRarity(Rarity rarity) {
+    public void setRarity(ModdedRarity rarity) {
         this.rarity = rarity;
     }
 

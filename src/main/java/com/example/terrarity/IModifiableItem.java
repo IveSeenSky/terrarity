@@ -6,8 +6,8 @@ import net.minecraft.text.MutableText;
 import java.util.Map;
 
 public interface IModifiableItem {
-    Rarity getRarity();
-    void setRarity(Rarity rarity);
+    ModdedRarity getRarity();
+    void setRarity(ModdedRarity rarity);
     Map<String, Double> getModifiers(); // String - название модификатора, Double - значение
     void setModifiers(Map<String, Double> modifiers);
 
