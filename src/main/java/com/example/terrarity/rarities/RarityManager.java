@@ -12,9 +12,14 @@ import java.lang.reflect.Modifier;
 import java.util.*;
 
 public abstract class RarityManager implements SimpleSynchronousResourceReloadListener {
+    private static Random random;
     private static final Map<String, Map<Rarity, Map<String, Modifier>>> MODIFIERS = new HashMap<>();
     private static final List<Rarity> RARITY_POOL = new ArrayList<>();
-    private static Random random;
+
+    @Override
+    public Identifier getFabricId() {
+        return new Identifier("terrarity", "rarity_manager");
+    }
 
     @Override
     public void reload(ResourceManager manager) {

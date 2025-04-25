@@ -5,6 +5,8 @@ import net.minecraft.item.*;
 
 import java.util.*;
 
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.random.Random;
 import org.spongepowered.asm.mixin.Mixin;
@@ -44,7 +46,7 @@ public abstract class ItemStackMixin {
     @Unique
     private String getItemType(Item thisItem) {
         return switch (thisItem) {
-            case ArmorItem armorItem -> "ArmorItem";
+            case WArmorItem armorItem -> "ArmorItem";
             case AxeItem axeItem -> "AxeItem";
             case PickaxeItem pickaxeItem -> "PickaxeItem";
             case HoeItem hoeItem -> "HoeItem";
